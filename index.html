@@ -38,7 +38,7 @@
             </div>
 
             <!--Waves Container-->
-            <div>
+            <div class="mb-5">
                 <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                 <defs>
@@ -56,19 +56,19 @@
         </div>
 
         <!--Main-->
-        <div class="main container">
-            <div v-if="results == null || results == ''" class="row empty mt-5 d-flex align-items-center justify-content-center">
+        <div class="main container mt-5">
+            <div v-if="results == null || results == ''" class="row empty pt-5 d-flex align-items-center justify-content-center">
                 <h1>Nessun risultato trovato</h1>
                 <h2>Modifica i criteri di ricerca o effettuane una nuova</h2>
             </div>
-              <div class="row row-cols-4 g-3">
+              <div class="row row-cols-2 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-5 media">
                 <div v-for="(element, index) in results" class="col">
-                    <div class="card">
-                        <div class="thumb w-100 rounded-5">
-                            <img :src="element.artworkUrl100" alt="">
+                    <div class="my-card shadow-sm p-2 rounded-4">
+                        <img :src="(element.artworkUrl100 != '') ? element.artworkUrl100 : `img/no-image.jpg`" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        <div class="info">
+                            <h1>{{ element.trackName }}</h1>
+                            <span>{{ element.artistName }}</span>
                         </div>
-                        <h1>{{ element.trackName }}</h1>
-                        <span>{{ element.artistName }}</span>
                     </div>
                 </div>
               </div>
