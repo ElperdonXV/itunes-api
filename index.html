@@ -61,9 +61,9 @@
                 <h1>Nessun risultato trovato</h1>
                 <h2>Modifica i criteri di ricerca o effettuane una nuova</h2>
             </div>
-              <div class="row row-cols-2 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-5 media">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
                 <div v-for="(element, index) in results" class="col">
-                    <div class="my-card shadow-sm p-2 rounded-4">
+                    <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column">
                         <img :src="(element.artworkUrl100 != '') ? element.artworkUrl100 : `img/no-image.jpg`" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <div class="info">
                             <h1>{{ element.trackName }}</h1>
