@@ -15,11 +15,19 @@
         <div class="container">
             <input @keyup="callItunes" v-model="text" type="text" placeholder="Cerca">
             <select @change="callItunes" v-model="value" class="form-select" aria-label="Default select example">
-                <option value="all" selected>All</option>
+                <option value="all">All</option>
                 <option value="movie">Movie</option>
                 <option value="music">Music</option>
                 <option value="podcast">Podcast</option>
               </select>
+              <div class="row row-col-5">
+                <div v-for="(element, index) in results" class="col">
+                    <div class="card">
+                        <span>{{ element.artistName }}</span>
+                        <img :src="element.artworkUrl100" alt="">
+                    </div>
+                </div>
+              </div>
         </div>
     </div>
     <script src="js/script.js"></script>

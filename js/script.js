@@ -4,18 +4,20 @@ const app = new Vue(
         data: {
             queryPath: 'https://itunes.apple.com/search',
             text: '',
-            reserch: [],
+            results: null,
+            value: 'all',
         },
         methods: {
             callItunes: function(){
                 const parametri= {
                     term: this.text,
                     media: this.value,
+                    country: 'it',
                 }
                 axios.get(`${this.queryPath}`, { params: parametri }
                 ).then((result)=>{
-                    //this.reserch= result.data.results;
-                    console.log(result.data.results);
+                    this.results= result.data.results;
+                    console.log(this.results);
                 }).catch((error)=>{
                     console.log(error);
                 });
