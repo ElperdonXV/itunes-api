@@ -9,16 +9,17 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="position-relative">
         
         <!--Header-->
         <div class="header">
             <!--Content before waves-->
             <div class="inner-header d-flex flex-column align-items-center justify-content-center">
-                <h1>Itunes Catalogue</h1>
+                <h1 class="title">Itunes Catalogue</h1>
                 <div class="reserch container">
                     <input @keyup="callItunes" v-model="text" type="text" placeholder="Cerca" class="rounded-pill w-50 p-3">
                 </div>
@@ -55,6 +56,15 @@
             <!--Waves end-->
         </div>
 
+        <!--Details-->
+        <div v-if="counter != null" class="details">
+            <img :src="details.artworkUrl100" :alt="details.trackName">
+            <h1>{{ details.trackName }}</h1>
+            <span class="fs-6">{{ details.artistName }}</span>
+            <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
+            <i @click="hide" class="bi bi-x-circle-fill"></i>
+        </div>
+
         <!--Main-->
         <div class="main container mt-5">
             <div v-if="results == null || results == ''" class="row empty pt-5 d-flex align-items-center justify-content-center">
@@ -63,9 +73,9 @@
             </div>
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
                 <div v-for="(element, index) in results" class="col">
-                    <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column">
+                    <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" @click="show(index)">
                         <img :src="(element.artworkUrl100 != '') ? element.artworkUrl100 : `img/no-image.jpg`" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                        <div class="info">
+                        <div class="info text-center">
                             <h2 class="fs-4 text-center">{{ element.trackName }}</h2>
                             <span class="fs-6">{{ element.artistName }}</span>
                         </div>

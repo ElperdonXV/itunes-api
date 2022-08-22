@@ -6,6 +6,8 @@ const app = new Vue(
             text: '',
             results: null,
             value: 'all',
+            counter: null,
+            details: null,
         },
         methods: {
             callItunes: function(){
@@ -22,6 +24,18 @@ const app = new Vue(
                     console.log(error);
                 });
             },
+
+            show: function(index){
+                this.counter = index;
+                console.log(this.counter);
+                this.details = this.results[this.counter];
+                console.log(this.details);
+            },
+
+            hide: function(){
+                this.counter = null;
+                this.details = null;
+            }
         }
     }
 );
