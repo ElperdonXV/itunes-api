@@ -21,10 +21,10 @@
             <div class="inner-header d-flex flex-column align-items-center justify-content-center">
                 <h1 class="title">Itunes Catalogue</h1>
                 <div class="reserch container">
-                    <input @keyup="callItunes" v-model="text" type="text" placeholder="Cerca" class="rounded-pill w-50 p-3">
+                    <input @keyup="firstCall" v-model="text" type="text" placeholder="Cerca" class="rounded-pill w-50 p-3">
                 </div>
                 <div class="filter w-25">
-                    <select @change="callItunes" v-model="value" class="form-select col" aria-label="Default select example" class="rounded-pill">
+                    <select @change="firstCall" v-model="value" class="form-select col" aria-label="Default select example" class="rounded-pill">
                         <option value="all">All</option>
                         <option value="movie">Movie</option>
                         <option value="music">Music</option>
@@ -94,7 +94,8 @@
                 </div>
               </div>
         </div>
-
+        <button v-if="offset != 0" class="btn" @click="prvPage">Previus</button>
+        <button class="btn" @click="nxtPage">Next</button>
         <!--Footer-->
         <footer class="p-2 text-center d-flex flex-column justify-content-center align-items-center">
             <h3 class="fs-6">Made by ElperdonXV - <a class="link-light" href="https://github.com/ElperdonXV">Github Portfolio</a></h3>

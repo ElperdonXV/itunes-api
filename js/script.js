@@ -8,6 +8,7 @@ const app = new Vue(
             value: 'all',
             counter: null,
             details: null,
+            offset: 0,
         },
         methods: {
             callItunes: function(){
@@ -18,6 +19,9 @@ const app = new Vue(
                     term: this.text,
                     media: this.value,
                     country: 'it',
+                    offset: this.offset,
+                    limit: 28,
+
                 }
                 axios.get(`${this.queryPath}`, { params: parametri }
                 ).then((result)=>{
@@ -35,7 +39,21 @@ const app = new Vue(
             hide: function(){
                 this.counter = null;
                 this.details = null;
+            },
+
+            nxtPage: function(){
+                this.offset = this.offset + 28;
+                this.callItunes();
+            },
+
+            prvPage: function(){
+                this.offset = this.offset - 28;
+                this.callItunes();
+            },
+
+            firstCall: function(){
+                this.offset = 0;
+                this.callItunes();
             }
-        }
     }
-);
+});
