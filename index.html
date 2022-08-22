@@ -57,22 +57,33 @@
         </div>
 
         <!--Details-->
-        <div v-if="counter != null" class="details">
-            <img :src="details.artworkUrl100" :alt="details.trackName">
-            <h1>{{ details.trackName }}</h1>
-            <span class="fs-6">{{ details.artistName }}</span>
-            <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
-            <i @click="hide" class="bi bi-x-circle-fill"></i>
+        <div v-if="counter != null" class="p-5">
+            <div class="container d-flex flex-column justify-content-center align-items-center details shadow-sm p-2 rounded-4">
+                <div class="main-info d-flex justify-content-between row">
+                    <div class="col-5">
+                        <img class="img-fluid" :src="details.artworkUrl100" :alt="details.trackName">
+                    </div>
+                    <div class="dx col-7">
+                        <h1>{{ details.trackName }}</h1>
+                        <span class="fs-6">{{ details.artistName }}</span>
+                    </div>
+                </div>
+                <audio v-if="details.kind == 'song' " :src="details.previewUrl" type="audio/x-m4a" controls></audio>
+                <div v-if="details.kind != 'song' " class="video">
+                    <video id="myVideo" width="auto" height="auto" preload="auto" :src="details.previewUrl" type="video/mp4" controls></video>
+                </div>
+                <i @click="hide" class="bi bi-x-circle-fill"></i>
+            </div>
         </div>
 
         <!--Main-->
-        <div class="main container mt-5">
-            <div v-if="results == null || results == ''" class="row empty pt-5 d-flex align-items-center justify-content-center">
+        <div class="main container mt-5 py-5">
+            <div v-if="results == null || results == ''" class="empty py-5 text-center">
                 <h1>Nessun risultato trovato</h1>
                 <h2>Modifica i criteri di ricerca o effettuane una nuova</h2>
             </div>
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
-                <div v-for="(element, index) in results" class="col">
+                <div v-if="counter == null" v-for="(element, index) in results" class="col">
                     <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" @click="show(index)">
                         <img :src="(element.artworkUrl100 != '') ? element.artworkUrl100 : `img/no-image.jpg`" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <div class="info text-center">
@@ -83,6 +94,11 @@
                 </div>
               </div>
         </div>
+
+        <!--Footer-->
+        <footer class="p-2 text-center d-flex flex-column justify-content-center align-items-center">
+            <h3 class="fs-6">Made by ElperdonXV - <a class="link-light" href="https://github.com/ElperdonXV">Github Portfolio</a></h3>
+        </footer>
     </div>
     <script src="js/script.js"></script>
 </body>

@@ -11,6 +11,9 @@ const app = new Vue(
         },
         methods: {
             callItunes: function(){
+                if(this.counter != null){
+                    this.counter = null;
+                }
                 const parametri= {
                     term: this.text,
                     media: this.value,
@@ -19,7 +22,6 @@ const app = new Vue(
                 axios.get(`${this.queryPath}`, { params: parametri }
                 ).then((result)=>{
                     this.results= result.data.results;
-                    console.log(this.results);
                 }).catch((error)=>{
                     console.log(error);
                 });
@@ -27,9 +29,7 @@ const app = new Vue(
 
             show: function(index){
                 this.counter = index;
-                console.log(this.counter);
                 this.details = this.results[this.counter];
-                console.log(this.details);
             },
 
             hide: function(){
