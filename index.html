@@ -86,15 +86,16 @@
         <!--Main-->
         <div class="main container mt-5 py-5">
             <div v-if="firstSearch == 0 && results == null" class="start py-5 text-center">
-                <h1>Avvia la ricerca</h1>
-                <h2>Scopri tutti i prodotti presenti nel catalogo Itunes</h2>
+                <h1 class="result-text fs-1">Start your research</h1>
+                <span class="text-black-50 fs-4">Discover all the products in the Itunes catalog</span>
             </div>
             <div v-if="firstSearch == 1 && results == null || results == ''" class="empty py-5 text-center">
-                <h1>Nessun risultato trovato</h1>
-                <h2>Modifica i criteri di ricerca o effettuane una nuova</h2>
+                <h1 class="result-text fs-2">No results found</h1>
+                <span class="text-black-50 fs-4">Change your search criteria or make a new one</span>
             </div>
+            <h3 v-if="results != null && results != ''" class="text-center mb-5 result-text">Results for '{{ text }}'</h3>
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
-                <div v-if="counter == null" v-for="(element, index) in results" class="col">
+                <div v-for="(element, index) in results" class="col">
                     <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" @click="show(index)">
                         <img :src="(element.artworkUrl100 != '') ? element.artworkUrl100 : `img/no-image.jpg`" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <div class="info text-center">

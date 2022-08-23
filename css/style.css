@@ -20,6 +20,7 @@
   color: transparent;
   /* -webkit-text-stroke: 3px #ffffff; */
   line-height: 1!important;
+  letter-spacing: -3px;
 }
 
 .title::before {
@@ -31,7 +32,7 @@
   -webkit-text-stroke: 0px transparent;
   /* border-right: 2px solid white; */
   overflow: hidden;
-  animation: animate-text 1s linear;
+  animation: animate-text 2s linear;
 }
 
 @keyframes animate-text{
@@ -148,6 +149,11 @@ input:focus::placeholder {
 
 .empty, .start{
   min-height: 400px;
+}
+
+.result-text{
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
 }
 
 .my-card{
