@@ -177,7 +177,36 @@ input:focus::placeholder {
 }
 
 .details{
-  min-height: 700px;
+  padding-top: 15vh;
+  display: block;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: calc(100vw - 17px);
+  height: 100vh;
+  z-index: 10000;
+  background: rgba(0,0,0,.95);
+  color: #fff;
+  text-align: left;
+}
+
+.my-thumb{
+  min-width: 12vw;
+  min-height: 12vh;
+
+}
+
+.exit{
+  top: 3vh;
+  right: 3vw;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 20px;
+  color: black;
 }
 
 .my-btn{
