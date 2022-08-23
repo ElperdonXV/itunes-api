@@ -9,6 +9,8 @@ const app = new Vue(
             counter: null,
             details: null,
             offset: 0,
+            firstSearch: 0,
+            resultsLength: null,
         },
         methods: {
             callItunes: function(){
@@ -26,6 +28,7 @@ const app = new Vue(
                 axios.get(`${this.queryPath}`, { params: parametri }
                 ).then((result)=>{
                     this.results= result.data.results;
+                    this.resultsLength = this.results.length;
                 }).catch((error)=>{
                     console.log(error);
                 });
@@ -53,6 +56,7 @@ const app = new Vue(
 
             firstCall: function(){
                 this.offset = 0;
+                this.firstSearch = 1;
                 this.callItunes();
             }
     }

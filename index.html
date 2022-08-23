@@ -78,7 +78,11 @@
 
         <!--Main-->
         <div class="main container mt-5 py-5">
-            <div v-if="results == null || results == ''" class="empty py-5 text-center">
+            <div v-if="firstSearch == 0 && results == null" class="start py-5 text-center">
+                <h1>Avvia la ricerca</h1>
+                <h2>Scopri tutti i prodotti presenti nel catalogo Itunes</h2>
+            </div>
+            <div v-if="firstSearch == 1 && results == null || results == ''" class="empty py-5 text-center">
                 <h1>Nessun risultato trovato</h1>
                 <h2>Modifica i criteri di ricerca o effettuane una nuova</h2>
             </div>
@@ -94,8 +98,17 @@
                 </div>
               </div>
         </div>
-        <button v-if="offset != 0" class="btn" @click="prvPage">Previus</button>
-        <button class="btn" @click="nxtPage">Next</button>
+
+        <!--Navbar-->
+        <div v-if=" firstSearch != 0 && results != ''" class="nav d-flex justify-content-center align-items-center py-5">
+            <div v-if="offset != 0" @click="prvPage" class="my-btn shadow-sm rounded-circle d-flex justify-content-center align-items-center mx-2">
+                <i class="bi bi-arrow-left-short"></i>
+            </div>
+            <div v-if="resultsLength >= 28 " @click="nxtPage" class="my-btn shadow-sm rounded-circle d-flex justify-content-center align-items-center mx-2">
+                <i class="bi bi-arrow-right-short"></i>
+            </div>
+        </div>
+
         <!--Footer-->
         <footer class="p-2 text-center d-flex flex-column justify-content-center align-items-center">
             <h3 class="fs-6">Made by ElperdonXV - <a class="link-light" href="https://github.com/ElperdonXV">Github Portfolio</a></h3>
