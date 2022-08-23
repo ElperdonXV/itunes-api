@@ -11,6 +11,7 @@ const app = new Vue(
             offset: 0,
             firstSearch: 0,
             resultsLength: null,
+            color: 0, // 0 for light mode, 1 for dark mode
         },
         methods: {
             callItunes: function(){
@@ -58,6 +59,16 @@ const app = new Vue(
                 this.offset = 0;
                 this.firstSearch = 1;
                 this.callItunes();
+            },
+
+            theme: function(){
+                if(this.color == 0){
+                    this.color = 1;
+                }
+                else{
+                    this.color = 0;
+                }
             }
+        }
     }
-});
+);

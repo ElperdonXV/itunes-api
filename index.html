@@ -14,20 +14,32 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="app" class="position-relative">
+    <div id="app" :class="( color == 0 ) ? 'position-relative' : 'dark position-relative'">
         
         <!--Header-->
         <div class="header">
+            <!--Dark & Light Mode-->
+            <div class="top-nav container d-flex justify-content-between pt-4">
+                <a href="#">Home</a>
+                <div class="d-flex justify-content-center align-items-center">
+                    <span>Theme:&nbsp;&nbsp;</span>
+                    <label class="switch">
+                        <input @click="theme" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
             <!--Content before waves-->
             <div class="inner-header d-flex flex-column align-items-center justify-content-center container">
-                <h2 class="spin-title text-center">search on</h2>
-                <h1 class="title" data-fill-text="iTunes">iTunes</h1>
+                <h2 :class="( color == 0 ) ? 'spin-title text-center' : 'spin-title text-center text-dark'">search on</h2>
+                <h1 :class="( color == 0 ) ? 'title' : 'title dark-title'" data-fill-text="iTunes">iTunes</h1>
                 <div class="reserch container d-flex justify-content-center align-items-center">
                     <div class="input w-25 mx-2">
-                        <input @keyup.enter="firstCall" v-model="text" type="text" placeholder="Search for music, movie, podcast... " class="rounded-pill p-3 shadow w-100">
+                        <input @keyup.enter="firstCall" v-model="text" type="text" placeholder="Search for music, movie, podcast... " :class="( color == 0 ) ? 'rounded-pill p-3 shadow w-100' : 'rounded-pill p-3 shadow w-100 dark text-white'">
                     </div>
                     <div class="select">
-                        <select @change="firstCall" v-model="value" class="form-select col rounded-5 shadow my-4" aria-label="Default select example">
+                        <select @change="firstCall" v-model="value" :class="( color == 0 ) ? 'form-select col rounded-5 shadow my-4' : 'form-select col rounded-5 shadow my-4 dark text-white border-0'" aria-label="Default select example">
                             <option value="all">All</option>
                             <option value="movie">Movie</option>
                             <option value="music">Music</option>
@@ -41,7 +53,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <span class="fs-5">Press Enter &crarr; to search</span>
+                    <span class="fs-5" :class="(color == 0) ? '' : 'text-dark'">Press Enter &crarr; to search</span>
                 </div>
             </div>
 
@@ -53,10 +65,10 @@
                 <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
                 </defs>
                 <g class="parallax">
-                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                <use xlink:href="#gentle-wave" x="48" y="0" :fill="(color == 0) ? 'rgba(255,255,255,0.7' : 'rgba(43,43,43,0.7' " />
+                <use xlink:href="#gentle-wave" x="48" y="3" :fill="(color == 0) ? 'rgba(255,255,255,0.5)' : 'rgba(43,43,43,0.5'" />
+                <use xlink:href="#gentle-wave" x="48" y="5" :fill="(color == 0) ? 'rgba(255,255,255,0.3)' : 'rgba(43,43,43,0.3'" />
+                <use xlink:href="#gentle-wave" x="48" y="7" :fill="(color == 0) ? '#fff' : '#141414'" />
                 </g>
                 </svg>
             </div>
@@ -86,17 +98,17 @@
         <!--Main-->
         <div class="main container mt-5 py-5">
             <div v-if="firstSearch == 0 && results == null" class="start py-5 text-center">
-                <h1 class="result-text fs-1">Start your research</h1>
-                <span class="text-black-50 fs-4">Discover all the products in the Itunes catalog</span>
+                <h1 :class="( color == 0 ) ? 'result-text fs-1' : 'result-text text-white fs-1'">Start your research</h1>
+                <span :class="( color == 0 ) ? 'text-black-50 fs-4' : 'text-white-50 fs-4'">Discover all the products in the Itunes catalog</span>
             </div>
             <div v-if="firstSearch == 1 && results == null || results == ''" class="empty py-5 text-center">
-                <h1 class="result-text fs-2">No results found</h1>
-                <span class="text-black-50 fs-4">Change your search criteria or make a new one</span>
+                <h1 :class="( color == 0 ) ? 'result-text fs-1' : 'result-text text-white fs-1'">No results found</h1>
+                <span :class="( color == 0 ) ? 'text-black-50 fs-4' : 'text-white-50 fs-4'">Change your search criteria or make a new one</span>
             </div>
-            <h3 v-if="results != null && results != ''" class="text-center mb-5 result-text">Results for '{{ text }}'</h3>
+            <h3 v-if="results != null && results != ''" :class="(color == 0) ? 'text-center mb-5 result-text' : 'text-center mb-5 result-text text-white'">Results for '{{ text }}'</h3>
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
                 <div v-for="(element, index) in results" class="col">
-                    <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" @click="show(index)">
+                    <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" :class="( color == 0) ? '' : 'light-black text-white'" @click="show(index)">
                         <img :src="(element.artworkUrl100 != '') ? element.artworkUrl100 : `img/no-image.jpg`" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <div class="info text-center">
                             <h2 class="fs-4 text-center">{{ element.trackName }}</h2>
@@ -109,10 +121,10 @@
 
         <!--Navbar-->
         <div v-if=" firstSearch != 0 && results != ''" class="nav d-flex justify-content-center align-items-center py-5">
-            <div v-if="offset != 0" @click="prvPage" class="my-btn shadow-sm rounded-circle d-flex justify-content-center align-items-center mx-2">
+            <div v-if="offset != 0" @click="prvPage" class="my-btn shadow-sm rounded-circle d-flex justify-content-center align-items-center mx-2" :class="( color == 0) ? '' : 'light-black text-white'">
                 <i class="bi bi-arrow-left-short"></i>
             </div>
-            <div v-if="resultsLength >= 28 " @click="nxtPage" class="my-btn shadow-sm rounded-circle d-flex justify-content-center align-items-center mx-2">
+            <div v-if="resultsLength >= 28 " @click="nxtPage" class="my-btn shadow-sm rounded-circle d-flex justify-content-center align-items-center mx-2" :class="( color == 0) ? '' : 'light-black text-white'">
                 <i class="bi bi-arrow-right-short"></i>
             </div>
         </div>
