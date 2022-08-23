@@ -20,7 +20,7 @@
         <div class="header">
             <!--Dark & Light Mode-->
             <div class="top-nav container d-flex justify-content-between pt-4">
-                <a href="#">Home</a>
+                <a href="" :class="(color == 0) ? 'text-white text-decoration-none' : 'text-black text-decoration-none'" onclick="javascript:window.location.reload();">Refresh</a>
                 <div class="d-flex justify-content-center align-items-center">
                     <span>Theme:&nbsp;&nbsp;</span>
                     <label class="switch">
@@ -80,19 +80,25 @@
             <div class="d-flex flex-column align-items-center details">
                 <div class="main-info d-flex justify-content-between row">
                     <div>
-                        <img class="img-thumbnail my-thumb rounded-circle mb-3" :src="details.artworkUrl100" :alt="details.trackName">
+                        <img class="my-thumb mb-3" :src="details.artworkUrl100" :alt="details.trackName">
                     </div>
                 </div>
-                <div class="mb-2">
+                <div class="mb-2 text-center">
                     <h1 class="mb-2">{{ details.trackName }}</h1>
                     <span class="fs-6">{{ details.artistName }}</span>
                 </div>
-                <span class="fs-6">Album: {{ details.artistName }}</span>
-                <span class="fs-6">Release Date: {{ details.artistName }}</span>
-                <audio v-if="details.kind == 'song' " :src="details.previewUrl" type="audio/x-m4a" controls></audio>
-                <div v-if="details.kind != 'song' " class="video">
-                    <video id="myVideo" width="auto" height="auto" preload="auto" :src="details.previewUrl" type="video/mp4" controls></video>
+                <hr>
+                <div v-if="details.kind == 'feature-movie' " class="video mb-2">
+                    <h1 class="mb-2 text-center fs-4">Trailer:</h1>
+                    <video id="myVideo" width="500px" height="auto" preload="auto" :src="details.previewUrl" type="video/mp4" controls></video>
                 </div>
+                <div v-if="details.kind == 'song'"  class="audio mb-2">
+                    <h1 class="mb-2 text-center fs-4">Preview:</h1>
+                    <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
+                </div>
+                <h4 class="fs-5">Album: {{ details.collectionName }}</h4>
+                <h4 class="fs-5">Genre: {{ details.primaryGenreName }}</h4>
+                <h4 class="fs-5">Release Date: {{ details.releaseDate }}</h4>
                 <div @click="hide" class="position-absolute rounded-circle d-flex justify-content-center align-items-center exit">
                     <i class="bi bi-x"></i>
                 </div>
@@ -113,7 +119,7 @@
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
                 <div v-for="(element, index) in results" class="col">
                     <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" :class="( color == 0) ? '' : 'light-black text-white'" @click="show(index)">
-                        <img :src="(element.artworkUrl100 != '') ? element.artworkUrl100 : `img/no-image.jpg`" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        <img :src="(element.artworkUrl60 != '') ? element.artworkUrl30 : `img/no-image.jpg`" alt="" :class="(element.kind != 'feature-movie') ? 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm max-height-15' : 'img-fluid mb-3 shadow-sm max-height-15'">
                         <div class="info text-center">
                             <h2 class="fs-4 text-center">{{ element.trackName }}</h2>
                             <span class="fs-6">{{ element.artistName }}</span>

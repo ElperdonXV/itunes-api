@@ -29,6 +29,13 @@ const app = new Vue(
                 axios.get(`${this.queryPath}`, { params: parametri }
                 ).then((result)=>{
                     this.results= result.data.results;
+                    this.results.forEach(element => {
+                        element.artworkUrl30 = element.artworkUrl30.replace('30x30', '300x300');
+                        element.artworkUrl60 = element.artworkUrl60.replace('60x60', '600x600');
+                        element.artworkUrl100 = element.artworkUrl100.replace('100x100', '1000x1000');
+                        let array = element.releaseDate.split("T");
+                        element.releaseDate = array[0];
+                    });
                     this.resultsLength = this.results.length;
                 }).catch((error)=>{
                     console.log(error);
