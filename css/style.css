@@ -3,6 +3,14 @@
   width: 100%;
 }
 
+.spin-title{
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 3vw;
+  line-height: 1!important;
+  margin: 0!important;
+}
+
 .title {
   font-family: "Poppins", sans-serif;
   position: relative;
@@ -11,6 +19,7 @@
   /* text-transform: capitalize; */
   color: transparent;
   /* -webkit-text-stroke: 3px #ffffff; */
+  line-height: 1!important;
 }
 
 .title::before {
@@ -36,12 +45,13 @@
   }
 }
 
-input:focus{
+input:focus, select:focus{
   outline: none;
 }
 
-input{
+input,select{
   border: none;
+  height: 60%;
 }
 
 
