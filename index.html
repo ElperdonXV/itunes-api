@@ -74,18 +74,18 @@
             </div>
             <!--Waves end-->
         </div>
-
+ 
         <!--Details-->
         <div v-if="counter != null" class="p-5">
-            <div class="d-flex flex-column align-items-center details">
+            <div class="d-flex flex-column justify-content-center align-items-center details">
                 <div class="main-info d-flex justify-content-between row">
                     <div>
                         <img class="my-thumb mb-3" :src="details.artworkUrl100" :alt="details.trackName">
                     </div>
                 </div>
                 <div class="mb-2 text-center" :class="(color == 0) ? 'text-white' : 'text-black'" >
-                    <h1 class="mb-2">{{ details.trackName }}</h1>
-                    <span class="fs-6">{{ details.artistName }}</span>
+                    <h1 class="mb-2 detail-track">{{ details.trackName }}</h1>
+                    <span class="fs-6 detail-artist">{{ details.artistName }}</span>
                 </div>
                 <hr>
                 <div v-if="details.kind == 'feature-movie' " class="video mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
@@ -108,28 +108,35 @@
             </div>
         </div>
 
+        <!--Loading-->
+        <div v-if="loading" class="loading text-center">
+            <button></button>
+        </div>
+
         <!--Main-->
         <div class="main container mt-5 py-5">
             <div v-if="firstSearch == 0 && results == null" class="start py-5 text-center">
                 <h1 :class="( color == 0 ) ? 'result-text fs-1' : 'result-text text-white fs-1'">Start your research</h1>
                 <span :class="( color == 0 ) ? 'text-black-50 fs-4' : 'text-white-50 fs-4'">Discover all the products in the Itunes catalog</span>
             </div>
-            <div v-if="firstSearch == 1 && results == null || results == ''" class="empty py-5 text-center">
+            <div v-if="firstSearch == 1 &&  loading == false &&  results == null || results == ''" class="empty py-5 text-center">
                 <h1 :class="( color == 0 ) ? 'result-text fs-1' : 'result-text text-white fs-1'">No results found</h1>
                 <span :class="( color == 0 ) ? 'text-black-50 fs-4' : 'text-white-50 fs-4'">Change your search criteria or make a new one</span>
             </div>
-            <h3 v-if="results != null && results != ''" :class="(color == 0) ? 'text-center mb-5 result-text' : 'text-center mb-5 result-text text-white'">Results for '{{ text }}'</h3>
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
-                <div v-for="(element, index) in results" class="col">
-                    <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" :class="( color == 0) ? '' : 'light-black text-white'" @click="show(index)">
-                        <img :src="(element.artworkUrl60 != '') ? element.artworkUrl30 : `img/no-image.jpg`" alt="" :class="(element.kind != 'feature-movie') ? 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm max-height-15' : 'img-fluid mb-3 shadow-sm max-height-15'">
-                        <div class="info text-center">
-                            <h2 class="fs-4 text-center">{{ element.trackName }}</h2>
-                            <span class="fs-6">{{ element.artistName }}</span>
+            <h3 v-if="results != null && results != ''" :class="(color == 0) ? 'text-center mb-5 result-text' : 'text-center mb-5 result-text text-white'">Results for '{{ textSearch }}'</h3>
+            <div class="py-4">
+                <div ref="main" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
+                    <div v-for="(element, index) in results" class="col">
+                        <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" :class="( color == 0) ? '' : 'light-black text-white'" @click="show(index)">
+                            <img :src="(element.artworkUrl60 != '') ? element.artworkUrl30 : `img/no-image.jpg`" alt="" :class="(element.kind != 'feature-movie') ? 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm max-height-15' : 'img-fluid mb-3 shadow-sm max-height-15'">
+                            <div class="info text-center">
+                                <h2 class="fs-4 text-center">{{ element.trackName }}</h2>
+                                <span class="fs-6">{{ element.artistName }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-              </div>
+                  </div>
+            </div>
         </div>
 
         <!--Navbar-->

@@ -66,19 +66,10 @@ input:focus::placeholder {
   background: linear-gradient(60deg, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%);
   color:white;
 }
-.logo {
-  width:50px;
-  fill:white;
-  padding-right:15px;
-  display:inline-block;
-  vertical-align: middle;
-}
 
 .inner-header {
   height:65vh;
   width:100%;
-  /* margin: 0;
-  padding: 0; */
 }
 
 .flex { /*Flexbox for containers*/
@@ -102,6 +93,10 @@ input:focus::placeholder {
   height:20vh;
   text-align:center;
   background-color: white;
+}
+
+.select select{
+  height: 5.7vh;
 }
 
 /* Animation */
@@ -160,6 +155,11 @@ input:focus::placeholder {
   min-height: 300px;
   /* background-color: white; */
   background-color: white;
+  -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -ms-transition: all 1s ease-out;
+  transition: all 1s ease-out;
 }
 
 .max-height-15{
@@ -175,15 +175,19 @@ input:focus::placeholder {
 
 .col .my-card:hover {
   transform: scale(1.20);
-  transition: 1s;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
   cursor: pointer;
   background-color: #fafafa;
 }
 
 .details{
-  padding: 8vh 0;
+  padding: 4vh 0;
   display: block;
-  overflow: auto;
+  overflow: hidden;
   position: fixed;
   left: 0;
   top: 0;
@@ -197,7 +201,7 @@ input:focus::placeholder {
 
 .my-thumb{
   max-width: 100vw;
-  max-height: 30vh;
+  max-height: 28vh;
 
 }
 
@@ -220,11 +224,20 @@ input:focus::placeholder {
   cursor: pointer;
   font-size: 32px;
   line-height: 32px;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .my-btn:hover{
   transform: scale(1.2);
-  transition: 1s;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   background-color: #fafafa;
 }
 
@@ -315,3 +328,19 @@ input:checked + .slider:before {
   background-color: #474747;
 }
 
+
+/* Loading */
+.loading button {
+  height: 40px;
+  width: 40px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  border-top-color: #fff;
+  animation: spinner2 600ms linear infinite;
+  }
+  @keyframes spinner2 {
+  to {
+  transform: rotate(360deg);
+  }
+  }
