@@ -149,6 +149,10 @@ input:focus::placeholder {
     overflow-x: hidden;
   }
 
+  .details video{
+    width: 350px;
+  }
+
   .exit{
     top: 5vh;
     right: 10vw;
