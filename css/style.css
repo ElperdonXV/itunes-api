@@ -154,6 +154,19 @@ input:focus::placeholder {
     right: 10vw;
   }
 
+  .title{
+    font-size: 20vw;
+  }
+
+  .spin-title{
+    font-size: 6vw;
+  }
+
+  .input{
+    flex-grow: 3;
+    width: auto!important;
+  }
+
 }
 
 .empty, .start{

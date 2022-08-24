@@ -34,7 +34,7 @@
             <div class="inner-header d-flex flex-column align-items-center justify-content-center container">
                 <h2 :class="( color == 0 ) ? 'spin-title text-center' : 'spin-title text-center text-dark'">search on</h2>
                 <h1 :class="( color == 0 ) ? 'title' : 'title dark-title'" data-fill-text="iTunes">iTunes</h1>
-                <div class="reserch container d-flex justify-content-center align-items-center">
+                <div class="reserch flex-wrap container d-flex justify-content-center align-items-center">
                     <div class="input w-25 mx-2">
                         <input @keyup.enter="firstCall" v-model="text" type="text" placeholder="Search for music, movie, podcast... " :class="( color == 0 ) ? 'rounded-pill p-3 shadow w-100' : 'rounded-pill p-3 shadow w-100 dark text-white'">
                     </div>
