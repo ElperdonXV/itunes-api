@@ -102,7 +102,7 @@
                     <h4 class="fs-5">Genre: {{ details.primaryGenreName }}</h4>
                     <h4 class="fs-5">Release Date: {{ details.releaseDate }}</h4>
                 </div>
-                <div @click="hide" class="position-absolute rounded-circle d-flex justify-content-center align-items-center exit">
+                <div @click="hide" class="position-absolute rounded-circle  exit" :class="(color== 0 ) ? '' : 'text-white light-black'">
                     <i class="bi bi-x"></i>
                 </div>
             </div>

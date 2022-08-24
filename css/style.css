@@ -248,6 +248,14 @@ input:focus::placeholder {
   color: black;
 }
 
+.exit i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 40px;
+}
+
 .my-btn{
   height: 60px;
   width: 60px;
