@@ -308,7 +308,7 @@ input:checked + .slider:before {
 }
 
 .light-black{
-  background-color: #2b2b2b;
+  background-color: #1c1c1c;
 }
 
 .col .light-black:hover, .nav .light-black:hover {

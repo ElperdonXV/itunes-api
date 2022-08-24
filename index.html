@@ -83,22 +83,25 @@
                         <img class="my-thumb mb-3" :src="details.artworkUrl100" :alt="details.trackName">
                     </div>
                 </div>
-                <div class="mb-2 text-center">
+                <div class="mb-2 text-center" :class="(color == 0) ? 'text-white' : 'text-black'" >
                     <h1 class="mb-2">{{ details.trackName }}</h1>
                     <span class="fs-6">{{ details.artistName }}</span>
                 </div>
                 <hr>
-                <div v-if="details.kind == 'feature-movie' " class="video mb-2">
+                <div v-if="details.kind == 'feature-movie' " class="video mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
                     <h1 class="mb-2 text-center fs-4">Trailer:</h1>
                     <video id="myVideo" width="500px" height="auto" preload="auto" :src="details.previewUrl" type="video/mp4" controls></video>
                 </div>
-                <div v-if="details.kind == 'song'"  class="audio mb-2">
+                <div v-if="details.kind == 'song'"  class="audio mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
                     <h1 class="mb-2 text-center fs-4">Preview:</h1>
                     <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
                 </div>
-                <h4 class="fs-5">Album: {{ details.collectionName }}</h4>
-                <h4 class="fs-5">Genre: {{ details.primaryGenreName }}</h4>
-                <h4 class="fs-5">Release Date: {{ details.releaseDate }}</h4>
+                <div :class="(color == 0) ? 'text-white' : 'text-black'" class="infos text-center my-5">
+                    <h1 class="mb-2 text-center fs-3">Info:</h1>
+                    <h4 class="fs-5">Album: {{ details.collectionName }}</h4>
+                    <h4 class="fs-5">Genre: {{ details.primaryGenreName }}</h4>
+                    <h4 class="fs-5">Release Date: {{ details.releaseDate }}</h4>
+                </div>
                 <div @click="hide" class="position-absolute rounded-circle d-flex justify-content-center align-items-center exit">
                     <i class="bi bi-x"></i>
                 </div>
