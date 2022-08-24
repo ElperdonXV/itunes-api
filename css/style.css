@@ -140,6 +140,16 @@ input:focus::placeholder {
   h1 {
     font-size:24px;
   }
+  .details{
+    width: 100%!important;
+    overflow-x: hidden;
+  }
+
+  .exit{
+    top: 5vh;
+    right: 10vw;
+  }
+  
 }
 
 .empty, .start{
@@ -192,7 +202,7 @@ input:focus::placeholder {
   left: 0;
   top: 0;
   width: calc(100vw - 17px);
-  height: 100vh;
+  height: 100%;
   z-index: 10000;
   background: linear-gradient(60deg, rgba(252,70,107,.95) 0%, rgba(63,94,251,.95) 100%);
   color: #fff;

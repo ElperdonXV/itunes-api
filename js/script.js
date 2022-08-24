@@ -79,7 +79,7 @@ const app = new Vue(
             scroll: function(){
                 var element = this.$refs['main'];
                 var top = element.offsetTop;
-                window.scrollTo(0, 1000);
+                window.scrollTo(0, top);
             },
 
             firstCall: function(){

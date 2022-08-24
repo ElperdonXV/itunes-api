@@ -123,9 +123,9 @@
                 <h1 :class="( color == 0 ) ? 'result-text fs-1' : 'result-text text-white fs-1'">No results found</h1>
                 <span :class="( color == 0 ) ? 'text-black-50 fs-4' : 'text-white-50 fs-4'">Change your search criteria or make a new one</span>
             </div>
-            <h3 v-if="results != null && results != ''" :class="(color == 0) ? 'text-center mb-5 result-text' : 'text-center mb-5 result-text text-white'">Results for '{{ textSearch }}'</h3>
-            <div class="py-4">
-                <div ref="main" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
+            <div ref="main" class="py-4">
+                <h3 v-if="results != null && results != ''" :class="(color == 0) ? 'text-center mb-5 result-text' : 'text-center mb-5 result-text text-white'">Results for '{{ textSearch }}'</h3>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 media">
                     <div v-for="(element, index) in results" class="col">
                         <div class="my-card shadow-sm p-2 rounded-4 d-flex justify-content-center align-items-center flex-column" :class="( color == 0) ? '' : 'light-black text-white'" @click="show(index)">
                             <img :src="(element.artworkUrl60 != '') ? element.artworkUrl30 : `img/no-image.jpg`" alt="" :class="(element.kind != 'feature-movie') ? 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm max-height-15' : 'img-fluid mb-3 shadow-sm max-height-15'">
