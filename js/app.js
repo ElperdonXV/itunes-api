@@ -41,6 +41,9 @@ const app = new Vue(
                                 element.artworkUrl100 = element.artworkUrl100.replace('100x100', '1000x1000');
                                 let array = element.releaseDate.split("T");
                                 element.releaseDate = array[0];
+                                var minutes = Math.floor(element.trackTimeMillis / 60000);
+                                var seconds = ((element.trackTimeMillis % 60000) / 1000).toFixed(0);
+                                element.trackTimeMillis = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
                             });
                             this.loading = false;
                             this.resultsLength = this.results.length;

@@ -147,6 +147,7 @@ input:focus::placeholder {
   .details{
     width: 100%!important;
     overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .details video{
@@ -216,7 +217,7 @@ input:focus::placeholder {
 }
 
 .details{
-  padding: 4vh 0;
+  padding: 150px 0;
   display: block;
   overflow: hidden;
   position: fixed;
@@ -230,9 +231,44 @@ input:focus::placeholder {
   text-align: left;
 }
 
+.details-absolute{
+  top: 20%;
+  left: 20%;
+  z-index: -2;
+}
+
+.detail-track{
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  font-weight: 800;
+  font-size: 80px;
+  color: rgba(255,255,255,1);
+  line-height: .90!important;
+  letter-spacing: -3px;
+}
+
+.detail-artist{
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  line-height: 1!important;
+  margin: 7px!important;
+}
+
+.sx, .dx{
+  background-color: rgba(255,255,255,0.2);
+}
+
+.sx{
+  width: 250px;
+}
+
+.main-text{
+  align-self: flex-end;
+}
+
 .my-thumb{
-  max-width: 28vw;
-  max-height: 28vh;
+  max-width: 250px;
+  /* max-height: 28vh; */
 
 }
 

@@ -76,31 +76,42 @@
         </div>
  
         <!--Details-->
-        <div v-if="counter != null" class="p-5">
-            <div class="d-flex flex-column justify-content-center align-items-center details">
-                <div class="main-info d-flex justify-content-between row">
-                    <div>
-                        <img class="my-thumb mb-3" :src="details.artworkUrl100" :alt="details.trackName">
+        <div v-if="counter != null" class="details">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="container">
+                    <div class="main-info d-flex">
+                        <div class="mx-4">
+                            <img class="my-thumb mb-3" :src="details.artworkUrl100" :alt="details.trackName">
+                        </div>
+                        <div class="main-text py-4 position-relative" :class="(color == 0) ? 'text-white' : 'text-black'">
+                            <h1 class="mb-4 detail-track">{{ details.trackName }}</h1>
+                            <div>
+                                <span class="fs-6 detail-artist">{{ details.artistName }}</span>
+                                <span class="fs-6">{{ details.kind }}&nbsp;-</span>
+                                <span class="fs-6">Artist Id:&nbsp;{{ details.artistId }}&nbsp;-</span>
+                                <span class="fs-6">Duration:&nbsp;{{ details.trackTimeMillis }}&nbsp;-</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-2 text-center" :class="(color == 0) ? 'text-white' : 'text-black'" >
-                    <h1 class="mb-2 detail-track">{{ details.trackName }}</h1>
-                    <span class="fs-6 detail-artist">{{ details.artistName }}</span>
-                </div>
-                <hr>
-                <div v-if="details.kind == 'feature-movie' " class="video mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
-                    <h1 class="mb-2 text-center fs-4">Trailer:</h1>
-                    <video id="myVideo" width="500px" height="auto" preload="auto" :src="details.previewUrl" type="video/mp4" controls></video>
-                </div>
-                <div v-if="details.kind == 'song'"  class="audio mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
-                    <h1 class="mb-2 text-center fs-4">Preview:</h1>
-                    <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
-                </div>
-                <div :class="(color == 0) ? 'text-white' : 'text-black'" class="infos text-center my-5">
-                    <h1 class="mb-2 text-center fs-3">Info:</h1>
-                    <h4 class="fs-5">Album: {{ details.collectionName }}</h4>
-                    <h4 class="fs-5">Genre: {{ details.primaryGenreName }}</h4>
-                    <h4 class="fs-5">Release Date: {{ details.releaseDate }}</h4>
+                    <hr>
+                    <div class="details-bottom d-flex">
+                        <div class="sx mx-4" :class="(color == 0) ? 'text-white' : 'text-black'">
+                            <h1 class="mb-2 fs-3">Info:</h1>
+                            <h4 class="fs-5">Album: {{ details.collectionName }}</h4>
+                            <h4 class="fs-5">Genre: {{ details.primaryGenreName }}</h4>
+                            <h4 class="fs-5">Release Date: {{ details.releaseDate }}</h4>
+                        </div>
+                        <div class="dx flex-grow-1">
+                            <div v-if="details.kind == 'feature-movie' " class="video mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
+                                <h1 class="mb-2 text-center fs-4">Trailer:</h1>
+                                <video id="myVideo" width="500px" height="auto" preload="auto" :src="details.previewUrl" type="video/mp4" controls></video>
+                            </div>
+                            <div v-if="details.kind == 'song'"  class="audio mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
+                                <h1 class="mb-2 text-center fs-4">Preview:</h1>
+                                <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div @click="hide" class="position-absolute rounded-circle  exit" :class="(color== 0 ) ? '' : 'text-white light-black'">
                     <i class="bi bi-x"></i>
