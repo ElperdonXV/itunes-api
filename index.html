@@ -22,7 +22,7 @@
             <div class="top-nav container d-flex justify-content-between pt-4">
                 <a href="" :class="(color == 0) ? 'text-white text-decoration-none' : 'text-black text-decoration-none'" onclick="javascript:window.location.reload();">Refresh</a>
                 <div class="d-flex justify-content-center align-items-center">
-                    <span>Theme:&nbsp;&nbsp;</span>
+                    <span :class="(color == 0) ? 'text-white' : 'text-black'">Theme:&nbsp;&nbsp;</span>
                     <label class="switch">
                         <input @click="theme" type="checkbox">
                         <span class="slider round"></span>
