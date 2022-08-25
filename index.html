@@ -81,34 +81,42 @@
                 <div class="container">
                     <div class="main-info d-flex">
                         <div class="mx-4">
-                            <img class="my-thumb mb-3" :src="details.artworkUrl100" :alt="details.trackName">
+                            <img :class="(details.kind == 'feature-movie') ? 'my-thumb-video mb-3' : 'my-thumb mb-3'" :src="details.artworkUrl100" :alt="details.trackName">
                         </div>
-                        <div class="main-text py-4 position-relative" :class="(color == 0) ? 'text-white' : 'text-black'">
-                            <h1 class="mb-4 detail-track">{{ details.trackName }}</h1>
+                        <div :class="(details.kind == 'feature-movie') ? 'main-text py-1 position-relative text-white' : 'main-text py-4 position-relative text-white'">
+                            <h1 :class="(details.kind == 'feature-movie') ? 'detail-track-video mb-4 detail-track' : 'mb-4 detail-track'">{{ details.trackName }}</h1>
                             <div>
                                 <span class="fs-6 detail-artist">{{ details.artistName }}</span>
                                 <span class="fs-6">{{ details.kind }}&nbsp;-</span>
                                 <span class="fs-6">Artist Id:&nbsp;{{ details.artistId }}&nbsp;-</span>
-                                <span class="fs-6">Duration:&nbsp;{{ details.trackTimeMillis }}&nbsp;-</span>
+                                <span class="fs-6">Duration:&nbsp;{{ details.trackTimeMillis }}&nbsp;</span>
                             </div>
                         </div>
                     </div>
                     <hr>
                     <div class="details-bottom d-flex">
-                        <div class="sx mx-4" :class="(color == 0) ? 'text-white' : 'text-black'">
-                            <h1 class="mb-2 fs-3">Info:</h1>
-                            <h4 class="fs-5">Album: {{ details.collectionName }}</h4>
-                            <h4 class="fs-5">Genre: {{ details.primaryGenreName }}</h4>
-                            <h4 class="fs-5">Release Date: {{ details.releaseDate }}</h4>
+                        <div class="sx ms-4 'text-white'">
+                            <div class="mb-2"><h4 class="fs-5">Album:&nbsp;</h4><span>{{ details.collectionName }}</span></div>
+                            <div class="mb-2"><h4 class="fs-5">Genre:&nbsp;</h4><span>{{ details.primaryGenreName }}</span></div>
+                            <div class="mb-2"><h4 class="fs-5">Release Date:&nbsp;</h4><span>{{ details.releaseDate }}</span></div>
+                            <div class="mb-2 no-mobile"><h4 class="fs-5">Country:&nbsp;</h4><span>{{ details.country }}</span></div>
+                            <div class="mb-2 no-mobile"><h4 class="fs-5">Price:&nbsp;</h4><span>{{ details.trackPrice }}&nbsp; {{ details.currency }}</span></div>
+                            <div class="mb-2 no-mobile"><h4 class="fs-5">Collection price:&nbsp;</h4><span>{{ details.collectionPrice }}&nbsp; {{ details.currency }}</span></div>
                         </div>
                         <div class="dx flex-grow-1">
-                            <div v-if="details.kind == 'feature-movie' " class="video mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
-                                <h1 class="mb-2 text-center fs-4">Trailer:</h1>
+                            <div v-if="details.kind == 'feature-movie' " class="video my-4 text-center text-white'">
                                 <video id="myVideo" width="500px" height="auto" preload="auto" :src="details.previewUrl" type="video/mp4" controls></video>
                             </div>
-                            <div v-if="details.kind == 'song'"  class="audio mb-2" :class="(color == 0) ? 'text-white' : 'text-black'" >
-                                <h1 class="mb-2 text-center fs-4">Preview:</h1>
-                                <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
+                            <div v-if="details.kind == 'song'"  class="audio text-center text-white">
+                                <div class="preview mb-4">
+                                    <h1 class="mb-2 fs-4">Preview:</h1>
+                                    <audio :src="details.previewUrl" type="audio/x-m4a" controls></audio>
+                                </div>
+                                <div class="links">
+                                    <div class="mb-2"><a :href="details.artistViewUrl" class="link-light fs-3 fw-bold">View {{ details.artistName }} on Itunes</a></div>
+                                    <div class="mb-2"><a :href="details.collectionViewUrl" class="link-light fs-3 fw-bold">View {{ details.collectionName }} on Itunes</a></div>
+                                    <div class="mb-2"><a :href="details.trackViewUrl" class="fs-3 link-light fw-bold">View {{ details.trackName }} on Itunes</a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
